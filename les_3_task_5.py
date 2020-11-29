@@ -1,33 +1,30 @@
 """
-3. В массиве случайных целых чисел поменять местами
-минимальный и максимальный элементы.
+5. В массиве найти максимальный отрицательный элемент.
+Вывести на экран его значение и позицию в массиве.
+Примечание к задаче: пожалуйста не путайте «минимальный»
+и «максимальный отрицательный». Это два абсолютно разных значения.
 """
 
 import random
 
-def min_max(array):
-    max=array[0]
-    min=array[0]
+def max_dis(array):
     i=0
     k=0
     n=0
     ln = len(array) - 1
+    dis=-1
     for i in range(ln):
-        if max<array[i]:
-            max=array[i]
-            k=i
-        if min>array[i]:
-            min=array[i]
-            n=i
+        if array[i]<dis and array[i]<0:
+            dis=i
+        elif array[i]<0 and array[i]>array[dis]:
+            dis=i
 
-    array[k], array[n] = array[n], array[k]
-    print(f'{min}-{n},{max}-{k}')
-    # print(array)
-    return array
+
+    print(f'На позиции {dis} лежит максимально отрицательный элемент {array[dis]}')
 
 
 array=[random.randint(-100,100) for _ in range(10)]
 
 print(array)
-print(min_max(array))
+max_dis(array)
 
